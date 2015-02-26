@@ -41,10 +41,17 @@
         ninoForm.insertBefore(msgBox,ninoForm.lastChild.previousSibling);
       }
     }
-    else {
+    else if (document.querySelector('.validation-message')){
       input.classList.remove('invalid');
       input.parentNode.classList.remove('invalid');
       document.querySelector('#form-nino').removeChild(document.querySelector('.validation-message'));
+    }
+  };
+
+  var prePopulateInputs = function () {
+    if (sessionStorage.nino) {
+      document.querySelector('#input-nino').value = sessionStorage.nino;
+      document.querySelector('#radio-' + sessionStorage.duration + '-months').checked = true;
     }
   }
 
@@ -75,7 +82,8 @@
   };
 
   return {
-      bindEvents : bindEvents()
+      bindEvents : bindEvents(),
+      prePopulateInputs : prePopulateInputs()
   };
 
 })();

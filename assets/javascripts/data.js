@@ -6,27 +6,18 @@
 
     for (var i = 0; i < data.length; i++) {
 
-      var person     = data[i],
-          name       = person.name,
-          nino       = person.nino,
-          company    = person.companyName,
-          fromDate   = person.fromDate,
-          toDate     = person.toDate,
-          pension    = (person.pension) ? 'Pension' : 'Employment',
-          financials = person.financials,
-          tableData  = '',
-          today      = new Date(),
-          dd         = today.getDate(),
-          mm         = today.getMonth()+1,
-          yyyy       = today.getFullYear(),
-          setFromDate = today.setDate(today.getDate() -90),
-          newfromDate = new Date(setFromDate),
-          fromMonth  = newfromDate.getMonth()+1,
-          todaysDate = dd + '/' + mm + '/' + yyyy,
-          fromDate   = dd + '/' + fromMonth + '/' + yyyy;
-
-      document.querySelector('.person-name').innerHTML = person.name;
-      document.querySelector('.person-nino').innerHTML = person.nino;
+      var person      = data[i],
+          name        = person.name,
+          nino        = person.nino,
+          company     = person.companyName,
+          fromDate    = person.fromDate,
+          toDate      = person.toDate,
+          pension     = (person.pension) ? 'Pension' : 'Employment',
+          financials  = person.financials,
+          tableData   = '';
+          
+      document.querySelector('.heading-large').innerHTML = "Income for " + person.name;
+      document.querySelector('.person-nino').innerHTML = "National Insurance Number: " + person.nino;
 
       tableData += '<table id="test"><thead><tr>'
                + '<th scope="col">Date</th>'
@@ -54,7 +45,7 @@
                 + company + ' ('
                 + pension +') </h3><p>'
                 + fromDate + ' - '
-                + todaysDate +'</p></div>'
+                + toDate +'</p></div>'
                 + tableData;
   }
 
@@ -66,13 +57,15 @@
     var nino        = sessionStorage.getItem('nino'),
         duration    = sessionStorage.getItem('duration'),
         jsonRequest = new XMLHttpRequest(),
+        printButton = document.querySelectorAll('.print'),
         url         = 'assets/javascripts/json/data-' + nino + '-' + duration + '.json';
 
     jsonRequest.onreadystatechange = function () {
-      console.log(jsonRequest.readyState)
-        console.log(jsonRequest.status)
         if (jsonRequest.status == 404) {
-          document.querySelector('.income-details').innerHTML = 'no data';
+          document.querySelector('.person-nino').innerHTML = 'Sorry this customer has not been registered on the Real Time Earnings system (RTE) <a href="setInterest.html">click here to Set Interest</a>.';
+          for (var i = 0; i < printButton.length; i++) {
+            printButton[i].parentNode.classList.add('hide');
+          };
         } else if (jsonRequest.readyState == 4 && jsonRequest.status == 200) {
         insertData(JSON.parse(jsonRequest.responseText));
       }
@@ -83,6 +76,19 @@
   };
 
   var bindEvents = function () {
+    var printButton = document.querySelectorAll('.print'),
+        newSearch   = document.querySelector('.new-search');
+
+    for (var i = 0; i < printButton.length; i++) {
+      printButton[i].addEventListener('click', function (e) {
+        window.print()
+      });
+    };
+
+    newSearch.addEventListener('click', function (e) {
+      sessionStorage.clear();
+    });
+
     //modals
     $('.income-details').on('click','.deductions',function () {
       var date      = $(this).data('date'),
@@ -93,6 +99,8 @@
       $('#deductions-modal').modal('show');
       return false;
     });
+
+
   };
 
   return {

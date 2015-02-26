@@ -61,6 +61,9 @@
             <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
             <nav id="proposition-menu">
               <a href="/" id="proposition-name">View Income </a>
+                <ul id="proposition-links">
+                  <li><a id="logout" href="login.html">Log Out</a></li>
+                </ul>
             </nav>
           </div>
         </div>
@@ -84,28 +87,87 @@
     </div>
   </div>
 
-  <form action="./nino.html" method="post" class="form">
-  <h1 class="form-title heading-large">Login</h1>
+  <form action="interestSet.html" method="post" class="form">
+  <h1 class="form-title heading-large">Set Interest</h1>
 
   <div class="form-group">
-    <label class="form-label-bold" for="staff-number">Staff Number</label>
-    <input type="text" class="form-control" id="staff-number">
+   <label class="form-label" for="first-name-2">First name</label>
+   <div class="validation-wrapper">
+     <input class="form-control" id="first-name-2" type="text">
+   </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="second-name-2">Second forname (optional)</label>
+    <div class="validation-wrapper">
+      <input class="form-control" id="second-name-2" type="text">
+    </div>
+  </div>
+ </div>
+  <div class="form-group">
+   <label class="form-label" for="last-name-2">Last name</label>
+   <div class="validation-wrapper">
+     <input class="form-control" id="last-name-2" type="text">
+   </div>
   </div>
 
   <div class="form-group">
-    <label class="form-label-bold" for="password">Password</label>
-    <input type="password" class="form-control" id="password">
-    <details class="text form-hint">
-      <summary role="button" aria-controls="details-content-0" tabindex="0" aria-expanded="false"><span class="summary">Help with password</span></summary>
-      <div class="panel-indent" id="details-content-0" aria-hidden="true" style="display: none;">
-        <p>Your password must contain: 6 letters, 2 numbers and be case sensitive.</p>
-        <p>If you have forgotten your password, please contact: <a href="mailto:help@password.gsi.gov.uk">help@password.gsi.gov.uk.</a></p>
+    <label class="form-label" for="nino">National Insurance number</label>
+    <p class="form-hint text">For example, 'QQ 12 34 56 C'.</p>
+    <div class="validation-wrapper">
+      <input type="text" class="form-control" name="nino" id="input-nino" maxlength="9">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <fieldset class="inline fieldset-dob">
+    <legend class="form-label">Date of birth</legend>
+      <div class="form-group form-group-compound">
+        <div class="form-date">
+          <p class="form-hint">For example, 31 3 1980</p>
+          <div class="form-group form-group-day">
+            <label for="dob-day">Day</label>
+            <input class="form-control" id="dob-day" type="number" pattern="[0-9]*" min="0" max="31">
+          </div>
+          <div class="form-group form-group-month">
+            <label for="dob-month">Month</label>
+            <input class="form-control" id="dob-month" type="number" pattern="[0-9]*" min="0" max="12">
+          </div>
+          <div class="form-group form-group-year">
+            <label for="dob-year">Year</label>
+            <input class="form-control" id="dob-year" type="number" pattern="[0-9]*" min="0" max="2014">
+          </div>
+        </div>
       </div>
-    </details>
+    </fieldset>
   </div>
 
   <div class="form-group">
-    <input type="submit" class="button" value="Login">
+    <fieldset class="inline">
+      <legend class="form-label">Gender</legend>
+      <div class="form-group form-group-compound">
+        <label class="block-label" data-target="example-ni-number" for="radio-gender-m">
+          <input id="radio-gender-m" class="hide-show" type="radio" name="gender" value="male">
+          Male
+        </label>
+        <label class="block-label" for="radio-gender-f">
+          <input id="radio-gender-f" class="hide-show" type="radio" name="gender" value="female">
+          Female
+        </label>
+        <label class="block-label" for="radio-gender-unknown">
+          <input id="radio-gender-unknown" class="hide-show" type="radio" name="gender" value="unknown">
+          Unknown
+        </label>
+        <label class="block-label" for="radio-gender-not-stated">
+          <input id="radio-gender-not-stated" class="hide-show" type="radio" name="gender" value="notStated">
+          Not Stated
+        </label>
+      </div>
+    </fieldset>
+  </div>
+
+
+  <div class="form-group">
+    <input type="submit" class="button" value="Continue">
   </div>
 
 </form>
@@ -122,8 +184,6 @@
 <!-- govuk_elements js -->
 <script src="/assets/javascripts/modernizr.custom.77028.js"></script>
 <script src="/assets/javascripts/details.polyfill.js"></script>
-
-<script src="/assets/javascripts/rti.js"></script>
 
 </body>
 </html>

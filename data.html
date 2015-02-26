@@ -56,9 +56,9 @@
           <div class="content">
             <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
             <nav id="proposition-menu">
-              <a href="login" id="proposition-name">View Income </a>
+              <a href="/" id="proposition-name">View Income </a>
               <ul id="proposition-links">
-                <li><a href="nino.html">New Search</a></li>
+                <li><a href="nino.html" class="new-search">New Search</a></li>
                 <li><a id="logout" href="login.html">Log Out</a></li>
               </ul>
             </nav>
@@ -85,16 +85,23 @@
   </div>
 
   <form action="./nino" method="post" class="form">
+  <div class="buttons-container">
+    <p><a href="nino.html">Back</a></p>
+    <p><a href="#" class="print">Print</a></p>
+  </div>
 
-    <h1 class="heading-large">Income for <span class="person-name"></span></h1>
+    <h1 class="heading-large"></h1>
     <div class="grid-row">
       <div class="column-half">
-        <h2 class="bold-medium">National Insurance Number: <span class="person-nino"></span></h2>
+        <h2 class="bold-medium person-nino"></h2>
       </div>
     </div>
 
     <div class="income-details"></div>
-
+    <div class="buttons-container">
+      <p><a href="nino.html">Back</a></p>
+      <p><a href="#" class="print">Print</a></p>
+    </div>
   </form>
 </main>
 
