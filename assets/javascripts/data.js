@@ -6,16 +6,17 @@
 
     for (var i = 0; i < data.length; i++) {
 
-      var person      = data[i],
-          name        = person.name,
-          nino        = person.nino,
-          company     = person.companyName,
-          fromDate    = person.fromDate,
-          toDate      = person.toDate,
-          pension     = (person.pension) ? 'Pension' : 'Employment',
-          financials  = person.financials,
-          tableData   = '';
-          
+
+      var person     = data[i],
+          name       = person.name,
+          nino       = person.nino,
+          company    = person.companyName,
+          fromDate   = person.fromDate,
+          toDate     = person.toDate,
+          pension    = (person.pension) ? 'Pension' : 'Employment',
+          financials = person.financials,
+          tableData  = '';
+
       document.querySelector('.heading-large').innerHTML = "Income for " + person.name;
       document.querySelector('.person-nino').innerHTML = "National Insurance Number: " + person.nino;
 
@@ -62,16 +63,13 @@
 
     jsonRequest.onreadystatechange = function () {
         if (jsonRequest.status == 404) {
-          document.querySelector('.person-nino').innerHTML = 'Sorry this customer has not been registered on the Real Time Earnings system (RTE) <a href="setInterest.html">click here to Set Interest</a>.';
-          for (var i = 0; i < printButton.length; i++) {
-            printButton[i].parentNode.classList.add('hide');
-          };
+          window.location.href = './noData.html';
         } else if (jsonRequest.readyState == 4 && jsonRequest.status == 200) {
         insertData(JSON.parse(jsonRequest.responseText));
       }
     }
 
-    jsonRequest.open("GET", url, true);
+    jsonRequest.open("POST", url, true);
     jsonRequest.send();
   };
 
