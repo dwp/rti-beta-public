@@ -55,8 +55,8 @@
   };
 
   var getJson = function () {
-    var nino        = sessionStorage.getItem('nino'),
-        duration    = sessionStorage.getItem('duration'),
+    var nino        = sessionStorage.getItem('nino').toLowerCase(),
+        duration    = sessionStorage.getItem('duration').toLowerCase(),
         jsonRequest = new XMLHttpRequest(),
         printButton = document.querySelectorAll('.print'),
         url         = 'assets/javascripts/json/data-' + nino + '-' + duration + '.json';

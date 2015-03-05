@@ -32,18 +32,18 @@
         ninoForm = document.querySelector('#form-nino');
 
     if (action === 'add') {
-      input.classList.add('invalid');
-      input.parentNode.classList.add('invalid');
+      input.className += ' invalid';
+      input.parentNode.className += ' invalid';
 
       if (!document.querySelector('.validation-message')) {
-        msgBox.classList.add('validation-message');
+        msgBox.className += ' validation-message';
         msgBox.appendChild(msgText);
         ninoForm.insertBefore(msgBox,ninoForm.lastChild.previousSibling);
       }
     }
     else if (document.querySelector('.validation-message')){
-      input.classList.remove('invalid');
-      input.parentNode.classList.remove('invalid');
+      input.className.replace('invalid','')
+      input.parentNode.className.replace('invalid','');
       document.querySelector('#form-nino').removeChild(document.querySelector('.validation-message'));
     }
   };
