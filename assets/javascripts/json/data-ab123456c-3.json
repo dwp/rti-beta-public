@@ -1,14 +1,71 @@
-[ {
-  "name"        : "Mary Jane Smith",
-  "companyName" : "Prudential",
-  "nino"        : "ABC123456C",
-  "fromDate"    : "02/12/14",
-  "toDate"      : "02/03/15",
-  "pension"     : "true",
-  "financials"  : [
-    {"DatePaid":"01/02/15","Gross":"80.00","Deductions" : "","Net" : "80.00"},
-    {"DatePaid":"03/01/14","Gross":"80.00","Deductions":"10.00", "Net":"70.00"},
-    {"DatePaid":"02/12/14","Gross":"80.00","Deductions":"", "Net":"80.00"}
-  ]
+{
+    "name": "John Smith",
+    "nino": "TN411358F",
+    "earnings": [
+        {
+            "organisation": "Prudentials",
+            "pension": true,
+            "startDate": "01/01/12",
+            "endDate": "20/01/15",
+            "payments": [
+              {"datePaid":"01/02/15","gross":"80.00","deduction" : "","net" : "80.00"},
+              {"datePaid":"03/01/14","gross":"80.00","deduction":"10.00", "net":"70.00"},
+              {"datePaid":"02/12/14","gross":"80.00","deduction":"", "net":"80.00"},
+              {"datePaid":"05/11/14","gross":"80.00","deduction":"", "net":"80.00"},
+              {"datePaid":"01/10/14","gross":"80.00","deduction" : "","net" : "80.00"},
+              {"datePaid":"03/09/14","gross":"80.00","deduction":"10.00", "net":"70.00"},
+              {"datePaid":"02/08/14","gross":"80.00","deduction":"", "net":"80.00"},
+              {"datePaid":"01/07/14","gross":"80.00","deduction":"", "net":"80.00"},
+              {"datePaid":"02/06/14","gross":"80.00","deduction":"", "net":"80.00"},
+              {"datePaid":"03/05/14","gross":"70.00","deduction":"", "net":"70.00"},
+              {"datePaid":"01/04/14","gross":"70.00","deduction":"", "net":"70.00"},
+              {"datePaid":"02/03/14","gross":"70.00","deduction":"", "net":"70.00"},
+              {"datePaid":"03/02/14","gross":"70.00","deduction":"", "net":"70.00"},
+              {"datePaid":"03/01/14","gross":"70.00","deduction":"", "net":"70.00"},
+              {"datePaid":"03/12/13","gross":"70.00","deduction":"", "net":"70.00"},
+              {"datePaid":"03/11/13","gross":"70.00","deduction":"", "net":"70.00"},
+              {"datePaid":"03/10/13","gross":"70.00","deduction":"", "net":"70.00"},
+              {"datePaid":"03/09/13","gross":"70.00","deduction":"", "net":"70.00"},
+              {"datePaid":"03/08/13","gross":"70.00","deduction":"", "net":"70.00"},
+              {"datePaid":"03/07/13","gross":"70.00","deduction":"", "net":"70.00"},
+              {"datePaid":"03/06/13","gross":"70.00","deduction":"", "net":"70.00"},
+              {"datePaid":"03/05/13","gross":"70.00","deduction":"", "net":"70.00"},
+              {"datePaid":"03/04/13","gross":"70.00","deduction":"", "net":"70.00"}
+            ]
+        },
+        {
+            "organisation": "Norwich Union",
+            "pension": true,
+            "startDate": "01/01/12",
+            "endDate": "20/01/15",
+            "payments": [
+                {
+                    "datePaid": "01/12/14",
+                    "gross": "200.0",
+                    "deduction": "0.0",
+                    "net": "200.0"
+                }
+            ]
+        },
+        {
+            "organisation": "Asda",
+            "pension": false,
+            "startDate": "01/01/12",
+            "endDate": "20/01/15",
+            "payments": [
+                {
+                    "datePaid": "29/12/14",
+                    "gross": "200.0",
+                    "deduction": "20.0",
+                    "net": "180.0"
+                },
+                {
+                    "datePaid": "28/11/14",
+                    "gross": "200.0",
+                    "deduction": "20.0",
+                    "net": "180.0"
+                }
+            ]
+        }
+    ]
 }
-]

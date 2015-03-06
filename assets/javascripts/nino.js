@@ -82,7 +82,7 @@
   };
 
   return {
-      bindEvents : bindEvents(),
+      bindEvents        : bindEvents(),
       prePopulateInputs : prePopulateInputs()
   };
 

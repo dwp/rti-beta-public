@@ -4,23 +4,21 @@
   var insertData = function (data) {
     var incomeHtml = '';
 
-    for (var i = 0; i < data.length; i++) {
+    document.querySelector('.heading-large').innerHTML = "Income for " + data.name;
+    document.querySelector('.person-nino').innerHTML   = "National Insurance Number: " + data.nino;
+
+    for (var i = 0; i < data.earnings.length; i++) {
 
 
-      var person     = data[i],
-          name       = person.name,
-          nino       = person.nino,
-          company    = person.companyName,
-          fromDate   = person.fromDate,
-          toDate     = person.toDate,
-          pension    = (person.pension) ? 'Pension' : 'Employment',
-          financials = person.financials,
+      var earnings   = data.earnings[i],
+          company    = earnings.organisation,
+          fromDate   = earnings.endDate,
+          toDate     = earnings.startDate,
+          pension    = (earnings.pension) ? 'Pension' : 'Employment',
+          financials = earnings.payments,
           tableData  = '';
 
-      document.querySelector('.heading-large').innerHTML = "Income for " + person.name;
-      document.querySelector('.person-nino').innerHTML = "National Insurance Number: " + person.nino;
-
-      tableData += '<table id="test"><thead><tr>'
+      tableData += '<details><summary class="summary">View payments</summary><table><thead><tr>'
                + '<th scope="col">Date</th>'
                + '<th class="numeric" scope="col">Gross</th>'
                + '<th class="numeric" scope="col">Deduction</th>'
@@ -28,19 +26,19 @@
                + '</tr></thead><tbody><tr>';
 
       for (var f = 0; f < financials.length; f++) {
-        var deductions = (financials[f].Deductions) ? '<a href="#" data-date="'
-                        + financials[f].DatePaid +'" data-deduction="'
-                        + financials[f].Deductions + '" class="deductions">'
-                        + financials[f].Deductions + '</a>' : '';
+        var deduction = (financials[f].deduction > 0) ? '<a href="#" data-date="'
+                        + financials[f].datePaid +'" data-deduction="'
+                        + financials[f].deduction + '" class="deductions">'
+                        + financials[f].deduction + '</a>' : '';
 
         tableData += '<tr><td>'
-                  + financials[f].DatePaid + '</td><td class="numeric">'
-                  + financials[f].Gross + '</td><td class="numeric">'
-                  + deductions + '</td><td class="numeric">'
-                  + financials[f].Net + '</td></tr>'
+                  + financials[f].datePaid + '</td><td class="numeric">'
+                  + financials[f].gross + '</td><td class="numeric">'
+                  + deduction + '</td><td class="numeric">'
+                  + financials[f].net + '</td></tr>'
       }
 
-      tableData +='</tbody></table>';
+      tableData +='</tbody></table></details>';
 
       incomeHtml += '<div><h3 class="heading-medium">'
                 + company + ' ('
