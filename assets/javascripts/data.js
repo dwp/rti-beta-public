@@ -60,11 +60,11 @@
         url         = 'assets/javascripts/json/data-' + nino + '-' + duration + '.json';
 
     jsonRequest.onreadystatechange = function () {
-        if (jsonRequest.status == 404) {
-          window.location.href = './noData.html';
-        } else if (jsonRequest.readyState == 4 && jsonRequest.status == 200) {
+      if (jsonRequest.readyState == 4 && jsonRequest.status == 200) {
         insertData(JSON.parse(jsonRequest.responseText));
-      }
+      } else if (jsonRequest.status == 404) {
+          window.location.href = './noData.html';
+        }
     }
 
     jsonRequest.open("POST", url, true);
