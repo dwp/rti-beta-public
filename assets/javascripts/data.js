@@ -9,11 +9,10 @@
 
     for (var i = 0; i < data.earnings.length; i++) {
 
-
       var earnings   = data.earnings[i],
           company    = earnings.organisation,
-          fromDate   = earnings.endDate,
-          toDate     = earnings.startDate,
+          fromDate   = earnings.startDate,
+          toDate     = earnings.endDate,
           pension    = (earnings.pension) ? 'Pension' : 'Employment',
           financials = earnings.payments,
           tableData  = '';
@@ -26,10 +25,18 @@
                + '</tr></thead><tbody><tr>';
 
       for (var f = 0; f < financials.length; f++) {
-        var deduction = (financials[f].deduction > 0) ? '<a href="#" data-date="'
+        var tax       = (financials[f].tax) ? 'data-tax="' + financials[f].tax +'"' : '',
+            nic       = (financials[f].nic) ? 'data-nic="' + financials[f].nic +'"' : '',
+            pensionContribution   = (financials[f].pensionContribution) ? 'data-pensionContribution="' + financials[f].pensionContribution +'"' : '',
+            deduction = (financials[f].deduction > 0) ? '<a href="#" ' + ' data-date="'
                         + financials[f].datePaid +'" data-deduction="'
-                        + financials[f].deduction + '" class="deductions">'
+                        + financials[f].deduction + '"'
+                        + tax
+                        + nic
+                        + pensionContribution
+                        + ' class="deductions">'
                         + financials[f].deduction + '</a>' : '';
+                        //console.log(f + "-data-tax=" + financials[f].tax)
 
         tableData += '<tr><td>'
                   + financials[f].datePaid + '</td><td class="numeric">'
@@ -89,7 +96,18 @@
     $('.income-details').on('click','.deductions',function () {
       var date      = $(this).data('date'),
           deduction = $(this).data('deduction'),
-          modalText = '<p class="font-xsmall">Date Paid: ' + date + ' Tax: ' + deduction + '</p>';
+          tax       = $(this).data('tax'),
+          nic       = $(this).data('nic'),
+          pension   = $(this).data('pensioncontribution');
+      if (tax) {
+          var modalText = '<p class="font-xsmall">Date Paid: ' + date + '</p>'
+                        + '<p class="font-xsmall">Tax: ' + tax + '</p>'
+                        + '<p class="font-xsmall">National Insurance Contribution: ' + nic + '</p>'
+                        + '<p class="font-xsmall">Pension: ' + pension + '</p>';
+      } else {
+        var modalText = '<p class="font-xsmall">Date Paid: ' + date + '</p>'
+                      + '<p class="font-xsmall">Tax: ' + deduction + '</p>';
+      }
 
       $('.modal-body').empty().append(modalText);
       $('#deductions-modal').modal('show');

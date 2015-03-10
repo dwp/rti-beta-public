@@ -4,7 +4,7 @@
 <!--[if lt IE 9]><html class="lte-ie8" lang=""><![endif]-->
 <!--[if gt IE 8]><!--><html lang=""><!--<![endif]-->
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8;FF=3;OtherUA=4" />
 
     <title>View Income
 </title>
@@ -36,8 +36,6 @@
   <body class="">
     <script type="text/javascript">document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
-
-
     <div id="skiplink-container">
       <div>
         <a href="#content" class="skiplink">Skip to main content</a>
@@ -62,6 +60,7 @@
             <nav id="proposition-menu">
               <a href="/" id="proposition-name">View Income </a>
                 <ul id="proposition-links">
+                  <li><a href="nino.html" class="new-search">New Search</a></li>
                   <li><a id="logout" href="login.html">Log Out</a></li>
                 </ul>
             </nav>
@@ -87,90 +86,22 @@
     </div>
   </div>
 
-  <form action="interestSet.html" method="post" class="form">
-  <h1 class="form-title heading-large">Set Interest</h1>
+  <form method="post" id="form-nino" action="./data.html" enctype="application/x-www-form-urlencoded" class="form">
+    <h1 class="heading-large">Income for John Smith</h1>
 
-  <div class="form-group">
-   <label class="form-label" for="first-name-2">First name</label>
-   <div class="validation-wrapper">
-     <input class="form-control" id="first-name-2" type="text">
-   </div>
-  </div>
-  <div class="form-group">
-    <label class="form-label" for="second-name-2">Second forename (optional)</label>
-    <div class="validation-wrapper">
-      <input class="form-control" id="second-name-2" type="text">
-    </div>
-  </div>
- </div>
-  <div class="form-group">
-   <label class="form-label" for="last-name-2">Last name</label>
-   <div class="validation-wrapper">
-     <input class="form-control" id="last-name-2" type="text">
-   </div>
-  </div>
-
-  <div class="form-group">
-    <label class="form-label" for="input-nino">National Insurance number</label>
-    <p class="form-hint text">For example, 'QQ 12 34 56 C'.</p>
-    <div class="validation-wrapper">
-      <input type="text" class="form-control" name="nino" id="input-nino" maxlength="9">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <fieldset class="inline fieldset-dob">
-    <legend class="form-label">Date of birth</legend>
-      <div class="form-group form-group-compound">
-        <div class="form-date">
-          <p class="form-hint">For example, 31 3 1980</p>
-          <div class="form-group form-group-day">
-            <label for="dob-day">Day</label>
-            <input class="form-control" id="dob-day" type="number" pattern="[0-9]*" min="0" max="31">
-          </div>
-          <div class="form-group form-group-month">
-            <label for="dob-month">Month</label>
-            <input class="form-control" id="dob-month" type="number" pattern="[0-9]*" min="0" max="12">
-          </div>
-          <div class="form-group form-group-year">
-            <label for="dob-year">Year</label>
-            <input class="form-control" id="dob-year" type="number" pattern="[0-9]*" min="0" max="2014">
-          </div>
-        </div>
+    <div class="grid-row">
+      <div class="column-half">
+        <h2 class="bold-medium person-nino">National Insurance Number: TN411358F</h2>
+        <h3 class="heading-medium">Date of birth: 01/01/1980</h3>
       </div>
-    </fieldset>
-  </div>
+    </div>
 
-  <div class="form-group">
-    <fieldset class="inline">
-      <legend class="form-label">Gender</legend>
-      <div class="form-group form-group-compound">
-        <label class="block-label" data-target="example-ni-number" for="radio-gender-m">
-          <input id="radio-gender-m" class="hide-show" type="radio" name="gender" value="male">
-          Male
-        </label>
-        <label class="block-label" for="radio-gender-f">
-          <input id="radio-gender-f" class="hide-show" type="radio" name="gender" value="female">
-          Female
-        </label>
-        <label class="block-label" for="radio-gender-unknown">
-          <input id="radio-gender-unknown" class="hide-show" type="radio" name="gender" value="unknown">
-          Unknown
-        </label>
-        <label class="block-label" for="radio-gender-not-stated">
-          <input id="radio-gender-not-stated" class="hide-show" type="radio" name="gender" value="notStated">
-          Not Stated
-        </label>
-      </div>
-    </fieldset>
-  </div>
+    <div class="form-group">
+      <input type="submit" id="submit-nino" class="button" value="Continue">
+      <p><a href="nino.html">Back</a></p>
+    </div>
 
-
-  <div class="form-group">
-    <input type="submit" class="button" value="Continue">
-  </div>
-
-</form>
+  </form>
 </main>
 
 <footer class="group js-footer" id="footer" role="contentinfo">
@@ -184,6 +115,8 @@
 <!-- govuk_elements js -->
 <script src="/assets/javascripts/modernizr.custom.77028.js"></script>
 <script src="/assets/javascripts/details.polyfill.js"></script>
+<script src="/assets/javascripts/rti.js"></script>
+<script src="/assets/javascripts/nino.js"></script>
 
 </body>
 </html>
