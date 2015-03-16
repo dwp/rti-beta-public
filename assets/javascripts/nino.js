@@ -62,14 +62,14 @@
         radioGroup = document.getElementsByName('radioGroup');
 
     ninoForm.addEventListener('submit', function (e) {
-      var nino = ninoInput.value;
+      var nino = ninoInput.value.toLowerCase();
       sessionStorage.nino = ninoInput.value;
       sessionStorage.setItem("duration", getChecked(radioGroup));
 
       if(ninoValidation(ninoInput) === false) {
         e.preventDefault();
       } else {
-        (ninoInput.value !== 'ab123456c') ? ninoForm.action = './noData.html' : ninoForm.action = './verify.html';
+        (nino !== 'ab123456c') ? ninoForm.action = './noData.html' : ninoForm.action = './verify.html';
       }
     });
 

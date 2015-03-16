@@ -64,7 +64,7 @@
         jsonRequest = new XMLHttpRequest(),
         printButton = document.querySelectorAll('.print'),
         url         = 'assets/javascripts/json/data-' + nino + '-' + duration + '.json';
-
+        
     jsonRequest.onreadystatechange = function () {
       if (jsonRequest.readyState == 4 && jsonRequest.status == 200) {
         insertData(JSON.parse(jsonRequest.responseText));
