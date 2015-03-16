@@ -25,18 +25,17 @@
                + '</tr></thead><tbody><tr>';
 
       for (var f = 0; f < financials.length; f++) {
-        var tax       = (financials[f].tax) ? 'data-tax="' + financials[f].tax +'"' : '',
-            nic       = (financials[f].nic) ? 'data-nic="' + financials[f].nic +'"' : '',
-            pensionContribution   = (financials[f].pensionContribution) ? 'data-pensionContribution="' + financials[f].pensionContribution +'"' : '',
-            deduction = (financials[f].deduction > 0) ? '<a href="#" ' + ' data-date="'
-                        + financials[f].datePaid +'" data-deduction="'
-                        + financials[f].deduction + '"'
-                        + tax
-                        + nic
-                        + pensionContribution
-                        + ' class="deductions">'
-                        + financials[f].deduction + '</a>' : '';
-                        //console.log(f + "-data-tax=" + financials[f].tax)
+        var tax                 = (financials[f].tax) ? 'data-tax="' + financials[f].tax +'"' : '',
+            nic                 = (financials[f].nic) ? 'data-nic="' + financials[f].nic +'"' : '',
+            pensionContribution = (financials[f].pensionContribution) ? 'data-pensionContribution="' + financials[f].pensionContribution +'"' : '',
+            deduction           = (financials[f].deduction > 0) ? '<a href="#" ' + ' data-date="'
+                                + financials[f].datePaid +'" data-deduction="'
+                                + financials[f].deduction + '"'
+                                + tax
+                                + nic
+                                + pensionContribution
+                                + ' class="deductions">'
+                                + financials[f].deduction + '</a>' : '';
 
         tableData += '<tr><td>'
                   + financials[f].datePaid + '</td><td class="numeric">'
