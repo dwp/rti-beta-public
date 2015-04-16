@@ -70,7 +70,13 @@
       if(ninoValidation(ninoInput) === false) {
         e.preventDefault();
       } else {
-        (nino !== 'ab123456c') ? ninoForm.action = './noData.html' : ninoForm.action = './data.html';
+        var inputs = document.getElementsByName('radioGroup');
+        for (var i=0; i<inputs.length; i++) {
+            if (inputs[i].checked) {
+              var duration = inputs[i].value;
+            }
+          }
+        (nino !== 'ab123456c') ? ninoForm.action = './noData.html' : ninoForm.action = './data_' + duration + '.html';
       }
     });
 

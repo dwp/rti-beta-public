@@ -87,10 +87,10 @@
       });
     };
 
-    
+
 
     //modals
-    $('.income-details').on('click','.deductions',function () {
+    $('.deductions').on('click',function () {
       var date      = $(this).data('date'),
           deduction = $(this).data('deduction'),
           tax       = $(this).data('tax'),
@@ -115,7 +115,6 @@
   };
 
   return {
-    getJson    : getJson(),
     bindEvents : bindEvents()
   };
 })();
