@@ -88,7 +88,7 @@
     };
 
     $('summary').click(function() {
-      console.log($(this).next('div').toggleClass('hide'))
+      $(this).next('div').toggleClass('hide')
     })
 
     //modals
