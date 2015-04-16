@@ -56,10 +56,11 @@
   }
 
   var bindEvents = function () {
-    var ninoForm   = document.querySelector('#form-nino'),
-        ninoInput  = document.querySelector('#input-nino'),
-        logout     = document.querySelector('#logout'),
-        radioGroup = document.getElementsByName('radioGroup');
+    var ninoForm      = document.querySelector('#form-nino'),
+        ninoInput     = document.querySelector('#input-nino'),
+        logout        = document.querySelector('#logout'),
+        radioGroup    = document.getElementsByName('radioGroup'),
+        ninoSearchBtn = document.querySelector('#submit-nino');
 
     ninoForm.addEventListener('submit', function (e) {
       var nino = ninoInput.value.toLowerCase();
@@ -69,18 +70,29 @@
       if(ninoValidation(ninoInput) === false) {
         e.preventDefault();
       } else {
-        (nino !== 'ab123456c') ? ninoForm.action = './noData.html' : ninoForm.action = './verify.html';
+        (nino !== 'ab123456c') ? ninoForm.action = './noData.html' : ninoForm.action = './data.html';
       }
     });
 
-    logout.addEventListener('click', function (e) {
-      if (confirm("Are you sure you want to logout of the View Income System") == true) {
-        return true;
-      } else {
-        ninoInput.focus();
+
+  if(ninoSearchBtn) {
+      ninoSearchBtn.addEventListener('click', function (e) {
+        var verify      = document.querySelector('#verify'),
+            setInterest = document.querySelector('#setInterest'),
+            ninoForm    = document.querySelector('#form-nino');
+
+        if (ninoInput.value.toLowerCase() === 'ab123456c') {
+          verify.className = 'show';
+          setInterest.className = 'hide';
+        } else {
+          setInterest.className ='show';
+          verify.className = 'hide';
+        }
         e.preventDefault();
-      }
-    });
+      });
+    }
+
+
 
   };
 

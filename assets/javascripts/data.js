@@ -63,8 +63,8 @@
         duration    = sessionStorage.getItem('duration').toLowerCase(),
         jsonRequest = new XMLHttpRequest(),
         printButton = document.querySelectorAll('.print'),
-        url         = 'assets/javascripts/json/data-' + nino + '-' + duration + '.json';
-        
+        url         = 'assets/javascripts/json/data-ab123456c-' + duration + '.json';
+
     jsonRequest.onreadystatechange = function () {
       if (jsonRequest.readyState == 4 && jsonRequest.status == 200) {
         insertData(JSON.parse(jsonRequest.responseText));
@@ -87,9 +87,7 @@
       });
     };
 
-    newSearch.addEventListener('click', function (e) {
-      sessionStorage.clear();
-    });
+    
 
     //modals
     $('.income-details').on('click','.deductions',function () {

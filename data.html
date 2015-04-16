@@ -30,7 +30,7 @@
     <link href="assets/stylesheets/rti.css" media="screen" rel="stylesheet" type="text/css" />
   </head>
 
-  <body class="">
+  <body id="full-width" class="">
     <script type="text/javascript">document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
     <div id="skiplink-container">
@@ -48,40 +48,32 @@
     <!--end global-cookie-message-->
 
     <header role="banner" id="global-header" class="with-proposition">
-      <div class="header-wrapper">
-        <div class="header-global">
-        </div>
-        <div class="header-proposition">
-          <div class="content">
-            <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
-            <nav id="proposition-menu">
-              <a href="/" id="proposition-name">View Income </a>
-              <ul id="proposition-links">
-                <li><a href="nino.html" class="new-search">New Search</a></li>
-                <li><a id="logout" href="login.html">Log Out</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </header>
-    <!--end header-->
+     <div class="header-wrapper">
+       <div class="header-global">
+         <div class="header-logo">
+           <a href="https://www.gov.uk/" title="Go to the GOV.UK homepage" id="logo" class="content">
+             <img src="/public/images/gov.uk_logotype_crown.png?0.12.0" width="35" height="31" alt=""> GOV.UK
+           </a>
+         </div>
+             </div>
+       <div class="header-proposition">
+         <div class="content">
+           <nav id="proposition-menu">
+             <a href="/" id="proposition-name">View Income</a>
+           </nav>
+         </div>
+       </div>
+           </div>
+         </header>
+         <!--end header-->
 
-  <div id="global-header-bar">
-    <div class="inner-block">
-      <div class="header-bar"></div>
-    </div>
-  </div>
-  <!--end global-header-bar-->
+      <main id="content" role="main">
 
-<main id="content" role="main" class="content">
-  <div class="outer-block">
-    <div class="inner-block">
-      <div class="phase-banner">
-        <p><strong class="phase-tag">BETA</strong> <span>This is a new service</p>
-      </div>
-    </div>
-  </div>
+       <div class="logo-banner">
+         <div class="logo">
+           <span class="organisation-logo">Department for Work and Pensions</span>
+         </div>
+       </div>
 
   <form action="./nino" method="post" class="form">
   <div class="buttons-container">
@@ -123,11 +115,11 @@
 <div id="global-app-error" class="app-error hidden"></div>
 
 <!-- govuk_elements js -->
-<script src="/assets/javascripts/modernizr.custom.77028.js"></script>
-<script src="/assets/javascripts/details.polyfill.js"></script>
-<script src="/assets/javascripts/vendor/jquery.js"></script>
-<script src="/assets/javascripts/vendor/bootstrap-modal.js"></script>
-<script src="/assets/javascripts/data.js"></script>
+<script src="assets/javascripts/modernizr.custom.77028.js"></script>
+<script src="assets/javascripts/details.polyfill.js"></script>
+<script src="assets/javascripts/vendor/jquery.js"></script>
+<script src="assets/javascripts/vendor/bootstrap-modal.js"></script>
+<script src="assets/javascripts/data.js"></script>
 
 </body>
 </html>
