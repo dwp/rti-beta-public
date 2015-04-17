@@ -14,7 +14,7 @@ Validation
 @media (min-width: 641px) {
     .validation-message {
     padding-left: 14px;
-    margin-left: -18px;
+    margin-left: 0px;
   }
 }
 
@@ -44,7 +44,7 @@ div.invalid {
 @media (min-width: 641px) {
   div.invalid {
     padding-left: 14px;
-    margin-left: -18px;
+    margin-left: 0px;
   }
   .optional-section div.invalid, .help-content div.invalid,
   .optional-section-core-content .optional-section div.invalid {

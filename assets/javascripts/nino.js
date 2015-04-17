@@ -18,7 +18,7 @@
         ninoEntered = ninoInput.value;
 
         if (! ninoEntered.match(ninoRegex)) {
-          errorMsg('add',ninoInput,'Please enter a National Insurance number in the correct format');
+          errorMsg('add',ninoInput,'Enter a National Insurance number in the correct format');
           return false;
         } else {
           errorMsg('remove',ninoInput,'');
@@ -29,7 +29,7 @@
   var errorMsg = function (action,input,msgText) {
     var msgBox   = document.createElement('div'),
         msgText  = document.createTextNode(msgText),
-        ninoForm = document.querySelector('#form-nino');
+        ninoForm = document.querySelector('#search-form-group');
 
     if (action === 'add') {
       input.className += ' invalid';
@@ -42,9 +42,9 @@
       }
     }
     else if (document.querySelector('.validation-message')){
-      input.className.replace('invalid','')
-      input.parentNode.className.replace('invalid','');
-      document.querySelector('#form-nino').removeChild(document.querySelector('.validation-message'));
+      input.className = 'form-control';
+      input.parentNode.className = 'validation-wrapper';
+      ninoForm.removeChild(document.querySelector('.validation-message'));
     }
   };
 
@@ -56,13 +56,13 @@
   }
 
   var bindEvents = function () {
-    var ninoForm      = document.querySelector('#form-nino'),
+    var verifyForm    = document.querySelector('#form-verify'),
         ninoInput     = document.querySelector('#input-nino'),
         logout        = document.querySelector('#logout'),
         radioGroup    = document.getElementsByName('radioGroup'),
         ninoSearchBtn = document.querySelector('#submit-nino');
 
-    ninoForm.addEventListener('submit', function (e) {
+    verifyForm.addEventListener('submit', function (e) {
       var nino = ninoInput.value.toLowerCase();
       sessionStorage.nino = ninoInput.value;
       sessionStorage.setItem("duration", getChecked(radioGroup));
@@ -76,12 +76,28 @@
               var duration = inputs[i].value;
             }
           }
-        (nino !== 'ab123456c') ? ninoForm.action = './noData.html' : ninoForm.action = './data_' + duration + '.html';
+          verifyForm.action = './data_' + duration + '.html';
       }
     });
 
+    ninoSearchBtn.addEventListener('click', function (e) {
+      if (ninoValidation(ninoInput) === false) {
+        verify.className = 'hide';
+        setInterest.className = 'hide';
+        e.preventDefault();
+      } else {
+        if (ninoInput.value.toLowerCase() === 'ab123456c') {
+          verify.className = 'show';
+          setInterest.className = 'hide';
+        } else {
+          setInterest.className ='show';
+          verify.className = 'hide';
+        }
+        e.preventDefault();
+      }
+    })
 
-  if(ninoSearchBtn) {
+  /*if(ninoSearchBtn) {
       ninoSearchBtn.addEventListener('click', function (e) {
         var verify      = document.querySelector('#verify'),
             setInterest = document.querySelector('#setInterest'),
@@ -97,7 +113,7 @@
         e.preventDefault();
       });
     }
-
+*/
 
 
   };
