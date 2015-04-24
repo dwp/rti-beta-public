@@ -50,17 +50,62 @@
 
   var prePopulateInputs = function () {
     if (sessionStorage.nino) {
+      document.querySelector('#verify').className = 'show';
       document.querySelector('#input-nino').value = sessionStorage.nino;
       document.querySelector('#radio-' + sessionStorage.duration + '-months').checked = true;
     }
   }
 
+  var atLeastOneChecked = function (inputs) {
+    var atLeastOneChecked =  false;
+    for (var i=0; i<inputs.length; i++) {
+      if (inputs[i].checked) {
+        atLeastOneChecked = true;
+      }
+    }
+    return atLeastOneChecked;
+  }
+
+  var isDobValid = function () {
+    var day     = document.querySelector('#dob-day').value,
+        month   = document.querySelector('#dob-month').value,
+        year    = document.querySelector('#dob-year-yyyy').value,
+        m       = parseInt(month),
+        d       = parseInt(day),
+        y       = parseInt(year),
+        date    = new Date(y,m-1,d),
+        isValid = false;
+
+    if (date.getFullYear() == y && date.getMonth() + 1 == m && date.getDate() == d) {
+      isValid = true;
+    }
+    return isValid;
+  }
+
   var bindEvents = function () {
-    var verifyForm    = document.querySelector('#form-verify'),
-        ninoInput     = document.querySelector('#input-nino'),
-        logout        = document.querySelector('#logout'),
-        radioGroup    = document.getElementsByName('radioGroup'),
-        ninoSearchBtn = document.querySelector('#submit-nino');
+    var searchForm      = document.querySelector('#form-nino'),
+        verifyForm      = document.querySelector('#form-verify'),
+        setInterestForm = document.querySelector('#form-set-interest'),
+        ninoInput       = document.querySelector('#input-nino'),
+        radioGroup      = document.getElementsByName('radioGroup'),
+        ninoSearchBtn   = document.querySelector('#submit-nino');
+
+    searchForm.addEventListener('submit', function(e) {
+      if (ninoValidation(ninoInput) === false) {
+        verify.className = 'hide';
+        setInterest.className = 'hide';
+      } else {
+        if (ninoInput.value.toLowerCase() === 'ab123456c') {
+          verify.className = 'show';
+          setInterest.className = 'hide';
+        } else {
+          setInterest.className ='show';
+          verify.className = 'hide';
+        }
+
+      }
+      e.preventDefault();
+    })
 
     verifyForm.addEventListener('submit', function (e) {
       var nino = ninoInput.value.toLowerCase();
@@ -80,41 +125,24 @@
       }
     });
 
-    ninoSearchBtn.addEventListener('click', function (e) {
-      if (ninoValidation(ninoInput) === false) {
-        verify.className = 'hide';
-        setInterest.className = 'hide';
-        e.preventDefault();
-      } else {
-        if (ninoInput.value.toLowerCase() === 'ab123456c') {
-          verify.className = 'show';
-          setInterest.className = 'hide';
-        } else {
-          setInterest.className ='show';
-          verify.className = 'hide';
+    setInterestForm.addEventListener('submit', function (e) {
+      var formElements = {
+            firstName  : document.querySelector('#first-name').value,
+            surname    : document.querySelector('#last-name').value,
+            nino       : document.querySelector('#confirm-nino').value,
+            dob        : isDobValid(),
+            gender     : atLeastOneChecked(document.getElementsByName('gender'))
+          },
+          submitForm = false;
+
+
+      for (var key in formElements) {
+        if(formElements[key] === false || formElements[key] === '') {
+         console.log(key + " -> " + formElements[key]);
         }
-        e.preventDefault();
       }
+      e.preventDefault();
     })
-
-  /*if(ninoSearchBtn) {
-      ninoSearchBtn.addEventListener('click', function (e) {
-        var verify      = document.querySelector('#verify'),
-            setInterest = document.querySelector('#setInterest'),
-            ninoForm    = document.querySelector('#form-nino');
-
-        if (ninoInput.value.toLowerCase() === 'ab123456c') {
-          verify.className = 'show';
-          setInterest.className = 'hide';
-        } else {
-          setInterest.className ='show';
-          verify.className = 'hide';
-        }
-        e.preventDefault();
-      });
-    }
-*/
-
 
   };
 

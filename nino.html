@@ -75,15 +75,17 @@
 
       <h1 class="heading-large">Search Real Time Earnings (RTE)</h1>
 
-      <div class="form-group">
-        <label class="form-label-bold" for="input-nino">National Insurance number</label>
-        <div class="validation-wrapper">
-          <input type="text" class="form-control" autocomplete="off" name="nino" id="input-nino" maxlength="9" autofocus>
+      <form method="post" id="form-nino" enctype="application/x-www-form-urlencoded" class="form">
+        <div class="form-group">
+          <label class="form-label-bold" for="input-nino">National Insurance number</label>
+          <div class="validation-wrapper">
+            <input type="text" class="form-control" autocomplete="off" name="nino" id="input-nino" maxlength="9" autofocus>
+          </div>
         </div>
-      </div>
-      <div id="search-form-group" class="form-group">
-        <a href="#" id="submit-nino" class="button">Search</a>
-      </div>
+        <div id="search-form-group" class="form-group">
+          <input type="submit" id="submit-nino" class="button" value="Search" />
+        </div>
+      </form>
 
   		<div id="verify" class="hide">
         <form method="post" id="form-verify" action="./data_3.html" enctype="application/x-www-form-urlencoded" class="form">
@@ -108,13 +110,13 @@
     		        </label>
     		      </fieldset>
     		    </div>
-    				<input type="submit"  id="view-data" class="button" value="View" />
+    				<input type="submit" id="view-data" class="button" value="View" />
     			</div>
         </form>
   		</div>
 
   		<div id="setInterest" class="hide">
-        <form method="post" id="form-verify" action="./interestSet.html" enctype="application/x-www-form-urlencoded" class="form">
+        <form method="post" id="form-set-interest" action="./interestSet.html" enctype="application/x-www-form-urlencoded" class="form">
     			<div class="panel-indent">
     	      <h3 id="interest-hd" class="heading-medium">This customer is not yet registered</h3>
     	      <div class="form-group">
@@ -176,7 +178,7 @@
     	          </div>
     	        </fieldset>
     	      </div>
-    	      <p><a href="./interestSet.html" id="set-interest" class="button">Set interest</a></p>
+    	      <input type="submit" class="button" value="Set interest" />
     	    </div>
         </form>
   		</div>
