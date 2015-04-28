@@ -1271,3 +1271,20 @@ button.close:hover {
 
 .modal-header h4, .modal-body p {
   margin: 0; }
+
+
+.button-link,
+.button-link:hover {
+  border: none;
+  background: none;
+  color: #005ea5;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.button-link:focus {
+  background-color: #ffbf47;
+  outline: thin dotted;
+  outline-offset: -2px;
+}
