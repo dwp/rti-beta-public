@@ -18,35 +18,32 @@
         ninoEntered = ninoInput.value;
 
         if (! ninoEntered.match(ninoRegex)) {
-          errorMsg('add',ninoInput,'Enter a National Insurance number in the correct format');
+          errorMsg('add',ninoInput);
           return false;
         } else {
-          errorMsg('remove',ninoInput,'');
+          errorMsg('remove',ninoInput);
           return true;
         }
   };
 
-  var errorMsg = function (action,input,msgText) {
-    var msgBox   = document.createElement('div'),
-        msgText  = document.createTextNode(msgText),
-        ninoForm = document.querySelector('#search-form-group');
-
-    if (action === 'add') {
-      input.className += ' invalid';
-      input.parentNode.className += ' invalid';
-
-      if (!document.querySelector('.validation-message')) {
-        msgBox.className += ' validation-message';
-        msgBox.appendChild(msgText);
-        ninoForm.insertBefore(msgBox,ninoForm.lastChild.previousSibling);
-      }
+  var errorMsg = function (action,input,formGroupCompound) {
+    var errorMsg = '<span class="error-message" aria-hidden="true">' + input.getAttribute('data-error') + '</span> ';
+    if (formGroupCompound) {
+      var formGroup  = document.querySelector('.form-group-' + formGroupCompound),
+          errorMsgEl = document.querySelector('.form-label-' + formGroupCompound);
+    } else {
+      var formGroup  = input.parentNode,
+          errorMsgEl = input.previousElementSibling;
     }
-    else if (document.querySelector('.validation-message')){
-      input.className = 'form-control';
-      input.parentNode.className = 'validation-wrapper';
-      ninoForm.removeChild(document.querySelector('.validation-message'));
+
+    if (action === 'remove') {
+      formGroup.className = formGroup.className.replace('error','');
+      errorMsgEl.innerHTML = errorMsgEl.innerHTML.replace(errorMsg,'');
+    } else if (! formGroup.className.match('error')) {
+      formGroup.className += ' error';
+      errorMsgEl.innerHTML = errorMsg + errorMsgEl.innerHTML;
     }
-  };
+  }
 
   var prePopulateInputs = function () {
     if (sessionStorage.nino) {
@@ -126,22 +123,53 @@
     });
 
     setInterestForm.addEventListener('submit', function (e) {
-      var formElements = {
-            firstName  : document.querySelector('#first-name').value,
-            surname    : document.querySelector('#last-name').value,
-            nino       : document.querySelector('#confirm-nino').value,
-            dob        : isDobValid(),
-            gender     : atLeastOneChecked(document.getElementsByName('gender'))
-          },
-          submitForm = false;
+      var submitForm  = true,
+          firstName   = document.querySelector('#first-name'),
+          lastName    = document.querySelector('#last-name'),
+          nino        = document.querySelector('#input-nino'),
+          confirmNino = document.querySelector('#confirm-nino'),
+          dobDay      = document.querySelector('#dob-day'),
+          gender      = document.getElementsByName('gender'),
+          genderM     = document.querySelector('#radio-gender-m');
 
+          if (firstName.value === '') {
+            errorMsg('add',firstName);
+            submitForm = false;
+          } else {
+            errorMsg('remove',firstName);
+          }
 
-      for (var key in formElements) {
-        if(formElements[key] === false || formElements[key] === '') {
-         console.log(key + " -> " + formElements[key]);
-        }
-      }
-      e.preventDefault();
+          if(lastName.value === '') {
+            errorMsg('add',lastName);
+            submitForm = false;
+          } else {
+            errorMsg('remove',lastName);
+          }
+
+          if (confirmNino.value !== nino.value) {
+            errorMsg('add',confirmNino)
+            submitForm = false;
+          } else {
+            errorMsg('remove',confirmNino)
+          }
+
+          if (! isDobValid()) {
+            errorMsg('add',dobDay,'dob')
+            submitForm = false;
+          } else {
+            errorMsg('remove',dobDay,'dob')
+          }
+
+          if (! atLeastOneChecked(gender)) {
+            errorMsg('add',genderM,'gender')
+            submitForm = false;
+          } else {
+            errorMsg('remove',genderM,'gender')
+          }
+
+          if(! submitForm) {
+            e.preventDefault();
+          }
     })
 
   };

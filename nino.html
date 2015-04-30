@@ -74,13 +74,10 @@
 
 
       <h1 class="heading-large">Search Real Time Earnings (RTE)</h1>
-
       <form method="post" id="form-nino" enctype="application/x-www-form-urlencoded" class="form">
         <div class="form-group">
           <label class="form-label-bold" for="input-nino">National Insurance number</label>
-          <div class="validation-wrapper">
-            <input type="text" class="form-control" autocomplete="off" name="nino" id="input-nino" maxlength="9" autofocus>
-          </div>
+          <input type="text" data-error="Enter a National Insurance number in the correct format" class="form-control" autocomplete="off" name="nino" id="input-nino" maxlength="9" autofocus>
         </div>
         <div id="search-form-group" class="form-group">
           <input type="submit" id="submit-nino" class="button" value="Search" />
@@ -121,50 +118,48 @@
     	      <h3 id="interest-hd" class="heading-medium">This customer is not yet registered</h3>
     	      <div class="form-group">
     	        <label class="form-label-bold" for="first-name">First name</label>
-    	        <div class="validation-wrapper">
-    	          <input class="form-control" autocomplete="off" id="first-name" type="text"/>
-    	        </div>
+    	        <input class="form-control" data-error="Enter a first name" autocomplete="off" id="first-name" type="text"/>
+    	      </div>
+    	      <div class="form-group">
+    	        <label class="form-label-bold" for="second-name">Second name (optional)</label>
+    	        <input class="form-control"  data-error="Error Message Here" autocomplete="off" id="second-name" type="text"/>
     	      </div>
     	      <div class="form-group">
     	        <label class="form-label-bold" for="last-name">Last name</label>
-    	        <div class="validation-wrapper">
-    	          <input class="form-control" autocomplete="off" id="last-name" type="text"/>
-    	        </div>
+    	        <input class="form-control" data-error="Enter a last name" autocomplete="off" id="last-name" type="text"/>
     	      </div>
     	      <div class="form-group">
     	        <label class="form-label-bold" for="input-nino">Confirm National Insurance number</label>
-    	        <div class="validation-wrapper">
-    	          <input type="text" class="form-control" autocomplete="off" name="nino" id="confirm-nino" maxlength="9" />
-    	        </div>
+    	        <input type="text" class="form-control" data-error="National insurance numbers do not match"  autocomplete="off" name="nino" id="confirm-nino" maxlength="9" />
     	      </div>
-    	      <div class="form-group">
-    	        <fieldset class="inline fieldset-dob">
-    	          <legend class="form-label-bold">Date of birth</legend>
+    	      <div class="form-group form-group-dob">
+    	        <fieldset class="inline">
+    	          <legend class="form-label-bold form-label-dob">Date of birth</legend>
     	          <div class="form-group form-group-compound">
     	            <div class="form-date">
     	              <p class="form-hint">For example, 31 3 1980</p>
     	              <div class="form-group form-group-day">
     	                <label for="dob-day">Day</label>
-    	                <input class="form-control" id="dob-day" type="number" autocomplete="off" pattern="[0-9]*" min="0" max="31"/>
+    	                <input class="form-control" data-error="Enter a valid date of birth" id="dob-day" type="number" autocomplete="off" pattern="[0-9]*" min="0" max="31" />
     	              </div>
     	              <div class="form-group form-group-month">
     	                <label for="dob-month">Month</label>
-    	                <input class="form-control" id="dob-month" type="number" autocomplete="off" pattern="[0-9]*" min="0" max="12"/>
+    	                <input class="form-control" id="dob-month" type="number" autocomplete="off" pattern="[0-9]*" min="0" max="12" />
     	              </div>
     	              <div class="form-group form-group-year">
     	                <label for="dob-year-yyyy">Year</label>
-    	                <input class="form-control" id="dob-year-yyyy" type="number" autocomplete="off" pattern="[0-9]*" min="0" max="2014"/>
+    	                <input class="form-control" id="dob-year-yyyy" type="number" autocomplete="off" pattern="[0-9]*" min="0" max="2014" />
     	              </div>
     	            </div>
     	          </div>
     	        </fieldset>
     	      </div>
-    	      <div class="form-group">
+    	      <div class="form-group form-group-gender">
     	        <fieldset class="inline">
-    	          <legend class="form-label-bold">Gender</legend>
+    	          <legend class="form-label-bold form-label-gender">Gender</legend>
     	          <div class="form-group form-group-compound">
     	            <label class="block-label" data-target="example-ni-number" for="radio-gender-m">
-    	            <input id="radio-gender-m" class="hide-show" type="radio" name="gender" value="male"/>
+    	            <input id="radio-gender-m" data-error="Select a gender" class="hide-show" type="radio" name="gender" value="male"/>
     	              Male
     	            </label>
     	            <label class="block-label" for="radio-gender-f">
