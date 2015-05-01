@@ -85,92 +85,102 @@
         setInterestForm = document.querySelector('#form-set-interest'),
         ninoInput       = document.querySelector('#input-nino'),
         radioGroup      = document.getElementsByName('radioGroup'),
-        ninoSearchBtn   = document.querySelector('#submit-nino');
+        ninoSearchBtn   = document.querySelector('#submit-nino'),
+        newSearch       = document.querySelector('#new-search');
 
-    searchForm.addEventListener('submit', function(e) {
-      if (ninoValidation(ninoInput) === false) {
-        verify.className = 'hide';
-        setInterest.className = 'hide';
-      } else {
-        if (ninoInput.value.toLowerCase() === 'ab123456c') {
-          verify.className = 'show';
+    if (searchForm) {
+      searchForm.addEventListener('submit', function(e) {
+        if (! ninoValidation(ninoInput)) {
+          verify.className = 'hide';
           setInterest.className = 'hide';
         } else {
-          setInterest.className ='show';
-          verify.className = 'hide';
+          if (ninoInput.value.toLowerCase() === 'ab123456c') {
+            verify.className = 'show';
+            setInterest.className = 'hide';
+          } else {
+            setInterest.className ='show';
+            verify.className = 'hide';
+          }
+
         }
-
-      }
-      e.preventDefault();
-    })
-
-    verifyForm.addEventListener('submit', function (e) {
-      var nino = ninoInput.value.toLowerCase();
-      sessionStorage.nino = ninoInput.value;
-      sessionStorage.setItem("duration", getChecked(radioGroup));
-
-      if(ninoValidation(ninoInput) === false) {
         e.preventDefault();
-      } else {
-        var inputs = document.getElementsByName('radioGroup');
-        for (var i=0; i<inputs.length; i++) {
-            if (inputs[i].checked) {
-              var duration = inputs[i].value;
+      })
+    }
+
+    if (verifyForm) {
+      verifyForm.addEventListener('submit', function (e) {
+        var nino = ninoInput.value.toLowerCase();
+        sessionStorage.nino = ninoInput.value;
+        sessionStorage.setItem("duration", getChecked(radioGroup));
+
+        if(ninoValidation(ninoInput) === false) {
+          e.preventDefault();
+        } else {
+          var inputs = document.getElementsByName('radioGroup');
+          for (var i=0; i<inputs.length; i++) {
+              if (inputs[i].checked) {
+                var duration = inputs[i].value;
+              }
             }
-          }
-          verifyForm.action = './data_' + duration + '.html';
-      }
-    });
+            verifyForm.action = './data_' + duration + '.html';
+        }
+      });
+    }
 
-    setInterestForm.addEventListener('submit', function (e) {
-      var submitForm  = true,
-          firstName   = document.querySelector('#first-name'),
-          lastName    = document.querySelector('#last-name'),
-          nino        = document.querySelector('#input-nino'),
-          confirmNino = document.querySelector('#confirm-nino'),
-          dobDay      = document.querySelector('#dob-day'),
-          gender      = document.getElementsByName('gender'),
-          genderM     = document.querySelector('#radio-gender-m');
+    if (setInterestForm) {
+      setInterestForm.addEventListener('submit', function (e) {
+        var submitForm  = true,
+            firstName   = document.querySelector('#first-name'),
+            lastName    = document.querySelector('#last-name'),
+            nino        = document.querySelector('#input-nino'),
+            confirmNino = document.querySelector('#confirm-nino'),
+            dobDay      = document.querySelector('#dob-day'),
+            gender      = document.getElementsByName('gender'),
+            genderM     = document.querySelector('#radio-gender-m');
 
-          if (firstName.value === '') {
-            errorMsg('add',firstName);
-            submitForm = false;
-          } else {
-            errorMsg('remove',firstName);
-          }
+            if (firstName.value === '') {
+              errorMsg('add',firstName);
+              submitForm = false;
+            } else {
+              errorMsg('remove',firstName);
+            }
 
-          if(lastName.value === '') {
-            errorMsg('add',lastName);
-            submitForm = false;
-          } else {
-            errorMsg('remove',lastName);
-          }
+            if(lastName.value === '') {
+              errorMsg('add',lastName);
+              submitForm = false;
+            } else {
+              errorMsg('remove',lastName);
+            }
 
-          if (confirmNino.value !== nino.value) {
-            errorMsg('add',confirmNino)
-            submitForm = false;
-          } else {
-            errorMsg('remove',confirmNino)
-          }
+            if (confirmNino.value !== nino.value) {
+              errorMsg('add',confirmNino)
+              submitForm = false;
+            } else {
+              errorMsg('remove',confirmNino)
+            }
 
-          if (! isDobValid()) {
-            errorMsg('add',dobDay,'dob')
-            submitForm = false;
-          } else {
-            errorMsg('remove',dobDay,'dob')
-          }
+            if (! isDobValid()) {
+              errorMsg('add',dobDay,'dob')
+              submitForm = false;
+            } else {
+              errorMsg('remove',dobDay,'dob')
+            }
 
-          if (! atLeastOneChecked(gender)) {
-            errorMsg('add',genderM,'gender')
-            submitForm = false;
-          } else {
-            errorMsg('remove',genderM,'gender')
-          }
+            if (! atLeastOneChecked(gender)) {
+              errorMsg('add',genderM,'gender')
+              submitForm = false;
+            } else {
+              errorMsg('remove',genderM,'gender')
+            }
 
-          if(! submitForm) {
-            e.preventDefault();
-          }
-    })
+            if(! submitForm) {
+              e.preventDefault();
+            } else {
+              delete sessionStorage.nino;
+              delete sessionStorage.duration;
+            }
+      })
+    }
 
   };
 
