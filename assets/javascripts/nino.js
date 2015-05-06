@@ -65,8 +65,8 @@
 
   var isDobValid = function () {
     var day     = document.querySelector('#dob-day').value,
-        month   = document.querySelector('#dob-month').value,
-        year    = document.querySelector('#dob-year-yyyy').value,
+        month   = document.querySelector('#dob-month-two-digits').value,
+        year    = document.querySelector('#dob-year-four-digits').value,
         m       = parseInt(month),
         d       = parseInt(day),
         y       = parseInt(year),

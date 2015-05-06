@@ -20,6 +20,10 @@
           tax       = $(this).data('tax'),
           nic       = $(this).data('nic'),
           pension   = $(this).data('pensioncontribution');
+
+      if (tax < 0) {
+          tax = '<span class="error-text">' + tax + '</span>';
+      }
       if (tax) {
           var modalText = '<p class="font-xsmall">Date Paid: ' + date + '</p>'
                         + '<p class="font-xsmall">Tax: ' + tax + '</p>'

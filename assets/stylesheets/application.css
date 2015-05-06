@@ -682,6 +682,10 @@ fieldset {
 .validation-summary a {
   color: #df3034; }
 
+.error-text {
+  color: #df3034;
+}
+
 .validation-summary .heading-small {
   margin-top: 15px; }
 
