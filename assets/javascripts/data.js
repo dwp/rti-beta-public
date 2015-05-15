@@ -39,6 +39,17 @@
       return false;
     });
 
+    $('.date-range-change').click(function () {
+      var showThis = $(this).data('content');
+
+      $('#date-range li').removeClass('selected')
+      $('.earnings-data-cont').removeClass('show').addClass('hide')
+
+      $(this).parent().addClass('selected')
+      $('#' + showThis).addClass('show')
+
+      return false;
+    })
 
   };
 
