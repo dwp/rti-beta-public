@@ -30,7 +30,7 @@
   font-weight: bold;
 }
 
-/*** uncss> filename: css/style.css ***/
+/*** uncss> filename: css/rti.css ***/
 
 /*** uncss> filename: assets/stylesheets/govuk-template.css ***/
 
@@ -168,6 +168,10 @@ body {
   line-height: 1.5;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
+}
+
+ul {
+  list-style: inherit;
 }
 
 fieldset {
@@ -592,6 +596,8 @@ h3,
 h4,
 p,
 a,
+ul,
+li,
 fieldset,
 form,
 label,
@@ -1090,6 +1096,11 @@ details .summary {
   text-decoration: underline;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 .panel-indent {
   clear: both;
   border-left: 4px solid #bfc1c3;
@@ -1127,7 +1138,7 @@ details .summary {
   font-size: 18px;
   line-height: 22px;
   padding: 3px 0 2px 44px;
-  background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px-916806dcf065e7273830577de490d5c7c42f36ddec83e907efe62086785f24fb.png);
+  background-image: url('../assets/images/crest.png');
   background-position: 6px center;
   background-repeat: no-repeat;
   background-size: auto 25px;
@@ -1177,9 +1188,10 @@ Full width
 
 #full-width #content,
 #full-width #global-header .header-wrapper {
+  display: block;
   max-width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #full-width #global-header.with-proposition .header-wrapper .header-proposition .content {
@@ -1196,104 +1208,34 @@ Full width
   }
 }
 
-/*****************************************
-Modals
-Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=1f91b1acbac34a560f65
-******************************************/
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-.modal {
-  display: none;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1050;
-  -webkit-overflow-scrolling: touch;
-  outline: 0;
-}
-
-.modal.fade .modal-dialog {
-  -webkit-transform: translate(0, -25%);
-  -ms-transform: translate(0, -25%);
-  -o-transform: translate(0, -25%);
-  transform: translate(0, -25%);
-  -webkit-transition: -webkit-transform 0.3s ease-out;
-  -o-transition: -o-transform 0.3s ease-out;
-  transition: transform 0.3s ease-out;
-}
-
-.modal-dialog {
-  position: relative;
-  width: auto;
-  margin: 10px;
-}
-
-.modal-content {
-  position: relative;
-  background-color: #ffffff;
-  border: 1px solid #999999;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  outline: 0;
-}
-
-.modal-header {
-  padding: 15px;
-  border-bottom: 1px solid #e5e5e5;
-  min-height: 16.42857143px;
-}
-
-.modal-header .close {
-  margin-top: -2px;
-}
-
-.modal-body {
-  position: relative;
-  padding: 15px;
-}
-
-@media (min-width: 768px) {
-  .modal-dialog {
-    width: 600px;
-    margin: 30px auto;
-  }
-
-  .modal-content {
-    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  }
-}
-
-.close {
-  background: none;
-  border: 0;
-  cursor: pointer;
-  font-size: 18px;
+.container {
+  width: 99%;
+  /* fix for ie9 */
 }
 
 button.close:hover {
   color: #2e8aca;
 }
 
-.modal-header h4 {
+.modal-header h4,
+.modal-body p {
   margin: 0;
+}
+
+.button-link,
+.button-link:hover {
+  border: none;
+  background: none;
+  color: #005ea5;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.button-link:focus {
+  background-color: #ffbf47;
+  outline: thin dotted;
+  outline-offset: -2px;
 }
 
 /*** uncss> filename: assets/stylesheets/rti.css ***/
@@ -1308,7 +1250,8 @@ table td.numeric {
 }
 
 /***********************
-Modals - taken from bootstrap
+Modals
+Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=1f91b1acbac34a560f65
 ***********************/
 
 .sr-only {
@@ -1345,6 +1288,13 @@ Modals - taken from bootstrap
   transition: transform 0.3s ease-out;
 }
 
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
 .modal-dialog {
   position: relative;
   width: auto;
@@ -1362,6 +1312,24 @@ Modals - taken from bootstrap
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   outline: 0;
+}
+
+.modal-backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: #000;
+}
+
+.modal-backdrop.fade {
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.modal-backdrop.in {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 
 .modal-header {
@@ -1397,6 +1365,11 @@ Modals - taken from bootstrap
   border: none;
 }
 
+.modal-header h4,
+.modal-body p {
+  margin: 0;
+}
+
 /***********************
 Global
 ***********************/
@@ -1405,21 +1378,51 @@ Global
   float: right !important;
 }
 
+.button-link,
+.button-link:hover {
+  border: none;
+  background: none;
+  color: #005ea5;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.button-link:focus {
+  background-color: #ffbf47;
+  outline: thin dotted;
+  outline-offset: -2px;
+}
+
+/***********************
+Validation
+***********************/
 
 .error {
-  margin-right: 15px; }
-  .error .error-message {
-    color: #b10e1e;
-    font-weight: bold; }
-  .error .form-control {
-    border: 4px solid #b10e1e; }
+  margin-right: 15px;
+}
 
-.error, .error-summary {
+.error .error-message {
+  color: #b10e1e;
+  font-weight: bold;
+}
+
+.error .form-control {
+  border: 4px solid #b10e1e;
+}
+
+.error,
+.error-summary {
   border-left: 5px solid #b10e1e;
-  padding-left: 10px; }
-  @media (min-width: 641px) {
-    .error, .error-summary {
-      padding-left: 15px; } }
+  padding-left: 10px;
+}
+
+@media (min-width: 641px) {
+  .error,
+  .error-summary {
+    padding-left: 15px;
+  }
+}
 
 .error-message {
   font-family: "nta", Arial, sans-serif;
@@ -1431,38 +1434,62 @@ Global
   clear: both;
   margin-top: 0;
   margin-bottom: 0;
-  padding-bottom: 5px; }
-  @media (max-width: 640px) {
-    .error-message {
-      font-size: 16px;
-      line-height: 1.25; } }
-  @media (min-width: 641px) {
-    .error-message {
-      padding-bottom: 10px; } }
+  padding-bottom: 5px;
+}
+
+@media (max-width: 640px) {
+  .error-message {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}
+
+@media (min-width: 641px) {
+  .error-message {
+    padding-bottom: 10px;
+  }
+}
 
 .error-summary {
   border: 5px solid #b10e1e;
   margin-top: 15px;
   margin-bottom: 15px;
-  padding: 10px; }
-  @media (min-width: 641px) {
-    .error-summary {
-      margin-top: 30px;
-      margin-bottom: 30px;
-      padding: 15px; } }
-  .error-summary:focus {
-    outline: 3px solid #ffbf47; }
-  .error-summary .error-summary-heading {
-    margin-top: 10px; }
-  .error-summary p {
-    margin-top: 15px;
-    margin-bottom: 5px; }
-  .error-summary .error-summary-list {
-    padding-left: 0; }
-    @media (min-width: 641px) {
-      .error-summary .error-summary-list li {
-        margin-bottom: 5px; } }
-    .error-summary .error-summary-list a {
-      color: #b10e1e;
-      font-weight: bold;
-      text-decoration: underline; }
+  padding: 10px;
+}
+
+@media (min-width: 641px) {
+  .error-summary {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 15px;
+  }
+}
+
+.error-summary:focus {
+  outline: 3px solid #ffbf47;
+}
+
+.error-summary .error-summary-heading {
+  margin-top: 10px;
+}
+
+.error-summary p {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.error-summary .error-summary-list {
+  padding-left: 0;
+}
+
+@media (min-width: 641px) {
+  .error-summary .error-summary-list li {
+    margin-bottom: 5px;
+  }
+}
+
+.error-summary .error-summary-list a {
+  color: #b10e1e;
+  font-weight: bold;
+  text-decoration: underline;
+}

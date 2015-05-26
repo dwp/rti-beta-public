@@ -3,7 +3,7 @@ module.exports = function(grunt) {
         uncss: {
         dist: {
           files: {
-                'css/rti.css': ['nino.html', 'data_all.html', 'interestSet.html']
+                'css/rti.css': ['uncss.html', 'data_uncss.html', 'interestSet.html']
             }
         }
       }

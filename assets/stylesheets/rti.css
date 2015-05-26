@@ -9,7 +9,8 @@ table td.numeric {
 
 
 /***********************
-Modals - taken from bootstrap
+Modals
+Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=1f91b1acbac34a560f65
 ***********************/
 .sr-only {
   position: absolute;
@@ -159,6 +160,11 @@ Modals - taken from bootstrap
   border:none;
 }
 
+.modal-header h4,
+.modal-body p {
+  margin: 0;
+}
+
 /***********************
 Global
 ***********************/
@@ -170,7 +176,25 @@ Global
   float: left !important;
 }
 
+.button-link,
+.button-link:hover {
+  border: none;
+  background: none;
+  color: #005ea5;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+}
 
+.button-link:focus {
+  background-color: #ffbf47;
+  outline: thin dotted;
+  outline-offset: -2px;
+}
+
+/***********************
+Validation
+***********************/
 .error {
   margin-right: 15px; }
   .error .error-message {
@@ -204,6 +228,7 @@ Global
   @media (min-width: 641px) {
     .error-message {
       padding-bottom: 10px; } }
+
 
 .error-summary {
   border: 5px solid #b10e1e;

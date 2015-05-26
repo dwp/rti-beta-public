@@ -11,7 +11,7 @@
       (function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var d=document,c="appendChild",a=d.createElement("style");a[c](d.createTextNode("@-ms-viewport{width:auto!important}"));d.getElementsByTagName("head")[0][c](a);}})();
     </script>
 
-  
+
     <link href="assets/stylesheets/govuk-template-print.css?0.12.0" media="print" rel="stylesheet" type="text/css" />
 
     <!--[if gte IE 9]><!-->
@@ -68,11 +68,23 @@
 
 
       <h1 class="heading-large">Search Real Time Earnings (RTE)</h1>
+      <div class="error-summary" role="group" aria-labelledby="error-summary-heading">
+      					<h3 class="heading-medium error-summary-heading" id="error-summary-heading">Errors have occurred on this screen</h3>
+      	          <p>Please correct the following errors</p>
+      		      <ul class="error-summary-list">
+      			      <li><a href="#error-first-name">Enter a first name</a></li>
+      			      <li><a href="#error-last-name">Enter a last name</a></li>
+      			      <li><a href="#error-input-confirm-nino">National insurance numbers do not match</a></li>
+      			      <li><a href="#error-dob-day">Enter a valid date of birth</a></li>
 
+
+      			      <li><a href="#error-radio-gender-m">Select a gender</a></li>
+      			  </ul>
+      		  </div>
       <form method="post" id="form-nino" enctype="application/x-www-form-urlencoded" class="form">
-        <div class="form-group">
-          <label class="form-label-bold" for="input-nino">National Insurance number</label>
-          <input type="text" data-error="Enter a National Insurance number in the correct format" class="form-control" autocomplete="off" name="nino" id="input-nino" maxlength="9" autofocus>
+        <div class="form-group error">
+          <label class="form-label-bold" for="input-nino"><span class="error-message" aria-hidden="true">Enter a National Insurance number in the correct format</span> National Insurance number</label>
+          <input type="text" data-error="Enter a National Insurance number in the correct format" class="form-control" autocomplete="off" name="nino" id="input-nino" maxlength="9" autofocus="">
         </div>
         <div id="search-form-group" class="form-group">
           <input type="submit" id="submit-nino" class="button" value="Search" />
